@@ -116,7 +116,7 @@ class StaticURLTests(TestCase):
                 response = self.post_author.get(address)
                 self.assertTemplateUsed(response, template)
 
-              
+
 class ViewTestClass(TestCase):
     def test_error_page(self):
         response = self.client.get('/nonexist-page/')
