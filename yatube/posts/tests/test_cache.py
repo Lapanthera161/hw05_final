@@ -8,7 +8,7 @@ from posts.models import Post, User
 INDEX = reverse('posts:index')
 
 
-class TaskPagesTests(TestCase):
+class CacheTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,17 +17,16 @@ class TaskPagesTests(TestCase):
             text='Тестовое описание поста',
             author=cls.test_user,
         )
-
-    def setUp(self):
-        self.guest_client = Client()
+        
+    client = Client()
 
     def test_pages_uses_correct_template(self):
         """Кэширование данных на главной странице работает корректно"""
-        response = self.guest_client.get(INDEX)
+        response = self.client.get(INDEX)
         cached_response_content = response.content
         Post.objects.create(text='Второй пост', author=self.test_user)
-        response = self.guest_client.get(INDEX)
+        response = self.client.get(INDEX)
         self.assertEqual(cached_response_content, response.content)
         cache.clear()
-        response = self.guest_client.get(INDEX)
+        response = self.client.get(INDEX)
         self.assertNotEqual(cached_response_content, response.content)
