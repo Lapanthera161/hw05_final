@@ -104,7 +104,7 @@ class PostPagesTests(TestCase):
             'posts:post_edit', kwargs={'post_id': '1'}))
         form_fields = {
             'group': forms.fields.ChoiceField,
-            'text': forms.fields.CharField,            
+            'text': forms.fields.CharField,
             'image': forms.fields.ImageField,
         }
 
@@ -118,7 +118,7 @@ class PostPagesTests(TestCase):
         response = self.post_author.get(reverse('posts:post_create'))
         form_fields = {
             'group': forms.fields.ChoiceField,
-            'text': forms.fields.CharField,            
+            'text': forms.fields.CharField,
             'image': forms.fields.ImageField,
         }
 
@@ -237,7 +237,7 @@ class PaginatorViewsTest(TestCase):
             reverse('posts:post_edit', args=('1'))]
         form_fields = {
             'text': forms.fields.CharField,
-            'group': forms.fields.ChoiceField,            
+            'group': forms.fields.ChoiceField,
             'image': forms.fields.ImageField,
         }
         for url in urls:

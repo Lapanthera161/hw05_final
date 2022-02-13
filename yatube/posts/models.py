@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from more_itertools import unique_to_each
 
 User = get_user_model()
 LENGHT = 15
@@ -45,7 +44,6 @@ class Post(models.Model):
         upload_to='posts/',
         blank=True
     )
-
 
     class Meta:
         ordering = ('-pub_date',)

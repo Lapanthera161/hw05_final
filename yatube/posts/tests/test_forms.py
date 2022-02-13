@@ -21,7 +21,7 @@ USERNAME = 'post_author'
 INDEX_URL = reverse('posts:index')
 
 
-@override_settings(MEDIA_ROOT=TEMP_DIR) 
+@override_settings(MEDIA_ROOT=TEMP_DIR)
 class PostCreateFormTests(TestCase):
     @classmethod
     def setUpClass(cls):

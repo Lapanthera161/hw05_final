@@ -1,7 +1,3 @@
-import tempfile
-
-
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
