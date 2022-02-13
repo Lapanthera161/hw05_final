@@ -78,5 +78,8 @@ class Follow(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, unique=False,
                                related_name='following')
 
+    class Meta:
+      unique_together = 'user', 'author'                           
+
     def __str__(self):
         return f'Пользователь:{self.user} подписался на {self.author}'
