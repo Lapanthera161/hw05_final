@@ -17,7 +17,7 @@ class CacheTests(TestCase):
             text='Тестовое описание поста',
             author=cls.test_user,
         )
-        
+
     client = Client()
 
     def test_pages_uses_correct_template(self):

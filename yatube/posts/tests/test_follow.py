@@ -59,7 +59,6 @@ class FollowViewTest(TestCase):
         self.assertTrue(Follow.objects.filter(user=self.user,
                                               author=self.user_2).exists())
         self.assertEqual(Follow.objects.count(), follow_count + 1)
-        
 
     def test_unfollow_another_user(self):
         """Авторизованный пользователь
