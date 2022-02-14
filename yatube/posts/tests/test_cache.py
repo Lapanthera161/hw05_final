@@ -1,5 +1,5 @@
 from django.core.cache import cache
-from django.test import Client, TestCase
+from django.test import TestCase
 from django.urls import reverse
 
 from posts.models import Post, User
@@ -17,8 +17,6 @@ class CacheTests(TestCase):
             text='Тестовое описание поста',
             author=cls.test_user,
         )
-
-    client = Client()
 
     def test_pages_uses_correct_template(self):
         """Кэширование данных на главной странице работает корректно"""

@@ -79,7 +79,11 @@ class Follow(models.Model):
                                related_name='following')
 
     class Meta:
-        unique_together = 'user', 'author'
+        constraints = [
+            models.UniqueConstraint(
+            fields=['user', 'author'],
+            name='user_author')
+        ]
 
     def __str__(self):
         return f'Пользователь:{self.user} подписался на {self.author}'
