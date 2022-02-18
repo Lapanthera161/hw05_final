@@ -23,9 +23,12 @@
           {{ comment.author.username }}
         </a>
       </h5>
-        <p>
-         {{ comment.text }}
-        </p>
+        <li class="list-group-item">
+          <p>
+           {{ comment.text }}
+          </p>        
+           {{ comment.created|date:"d.m.Y H:i" }}
+        </li> 
       </div>
     </div>
 {% endfor %}

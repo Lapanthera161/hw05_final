@@ -47,8 +47,9 @@ def profile(request, username):
     context = {
         'author': author,
         'count': count,
-        'follow': follow,
+        'following': follow,
         'page_obj': page_obj,
+        'paginator':paginator,
     }
     return render(request, 'posts/profile.html', context)
 
