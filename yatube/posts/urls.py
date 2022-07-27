@@ -1,6 +1,4 @@
 from django.urls import path
-from django.conf.urls import url
-
 from . import views
 
 app_name = 'posts'
@@ -26,5 +24,7 @@ urlpatterns = [
         'profile/<str:username>/unfollow/',
         views.profile_unfollow,
         name='profile_unfollow'
-    ),
+    ),    
+    path('posts/<post_id>/delete/', views.post_delete, name='post_delete'),
+    path('posts/<comment_id>/comment_delete/', views.comment_delete, name='comment_delete'),
 ]

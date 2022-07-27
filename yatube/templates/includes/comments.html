@@ -13,7 +13,10 @@
       </form>
     </div>
   </div>
+{% else %}
+    <h6 style="background-color: FireBrick; width: 500px; color: yellow">Комментируют только зарегистрированный пользователи</h6>
 {% endif %}
+
 
 {% for comment in comments %}
   <div class="media mb-4">
@@ -27,8 +30,13 @@
           <p>
            {{ comment.text }}
           </p>        
-           {{ comment.created|date:"d.m.Y H:i" }}
+           {{ comment.created|date:"d.m.Y H:i" }}           
         </li> 
+        {% if comment.author == request.user %}          
+          <a class="btn btn-sm btn-secondary rounded" href="{% url 'posts:comment_delete' comment.pk %}" role="button"> 
+            Удалить пост
+          </a>
+        {% endif %}
       </div>
     </div>
 {% endfor %}

@@ -1,8 +1,9 @@
+from xml.etree.ElementTree import Comment
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm, CommentForm
-from .models import Follow, Group, Post, User
+from .models import Comment, Follow, Group, Post, User
 
 
 COUNTP = 10
@@ -15,7 +16,6 @@ def index(request):
     page_obj = paginator.get_page(page_number)
     context = {
         'page_obj': page_obj,
-        'index': True,
     }
     return render(request, 'posts/index.html', context)
 
@@ -154,3 +154,21 @@ def profile_unfollow(request, username):
     get_object_or_404(Follow, user=request.user,
                       author__username=username).delete()
     return redirect('posts:profile', username=username)
+
+
+@login_required
+def post_delete(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if post.author != request.user:
+        return redirect('posts:post_detail', post_id)
+    post.delete()
+    return redirect('posts:index')
+
+@login_required
+def comment_delete(request, comment_id):    
+    comment = get_object_or_404(Comment, pk=comment_id)
+    post_id=comment.post.id
+    if comment.author != request.user:        
+        return redirect('posts:post_detail', comment_id)
+    comment.delete()
+    return redirect('posts:post_detail',post_id)

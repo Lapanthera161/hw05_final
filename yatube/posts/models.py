@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 LENGHT = 15
@@ -44,7 +44,7 @@ class Post(models.Model):
         upload_to='posts/',
         blank=True
     )
-    
+
     class Meta:
         ordering = ('-pub_date',)
         verbose_name = 'Пост'
@@ -68,8 +68,8 @@ class Comment(models.Model):
     class Meta:
         ordering = ('-created',)
 
-    def __str__(self):
-        return self.text[:LENGHT]
+        def __str__(self):
+            return self.text[:LENGHT]
 
 
 class Follow(models.Model):
